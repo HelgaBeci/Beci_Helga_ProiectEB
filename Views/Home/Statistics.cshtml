@@ -1,0 +1,27 @@
+﻿
+@model IEnumerable<Beci_Helga_Proiect.Models.StoreViewModels.OrderGroup>
+@{
+    ViewData["Title"] = "Ordered Laptops Statistics";
+}
+<h2>Ordered Laptops Statistics</h2>
+<table>
+    <tr>
+        <th>
+            Order Date
+        </th>
+        <th>
+            Ordered Laptops
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @item.LaptopCount
+            </td>
+        </tr>
+    }
+</table>

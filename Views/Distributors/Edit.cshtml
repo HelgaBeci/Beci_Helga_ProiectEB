@@ -1,0 +1,62 @@
+﻿@model Beci_Helga_Proiect.Models.Distributor
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Distributor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="DistributorName" class="control-label"></label>
+                <input asp-for="DistributorName" class="form-control" />
+                <span asp-validation-for="DistributorName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Adress" class="control-label"></label>
+                <input asp-for="Adress" class="form-control" />
+                <span asp-validation-for="Adress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <table>
+                        <tr>
+                            @{
+                                int cnt = 0;
+                                List<Beci_Helga_Proiect.Models.StoreViewModels.DistributedLaptopData> laptops = ViewBag.Laptops;
+                                foreach (var laptop in laptops)
+                                {
+                                    if (cnt++ % 3 == 0)
+                                    {
+                                    @:</tr><tr>
+                                    }
+                                    @:<td>
+                                        <input type="checkbox"
+                                               name="selectedLaptops"
+                                               value="@laptop.LaptopID"
+                                               @(Html.Raw(laptop.IsDistributed ? "checked=\"checked\"" : "")) />
+                                        @laptop.LaptopID @: @laptop.Model
+                                    @:</td>
+                                }
+                            @:</tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
